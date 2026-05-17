@@ -1,0 +1,13 @@
+[project]
+name = "heatpumpdryper-data-collection"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "PyP100@git+https://github.com/almottier/TapoP100.git@6646003a0fd90f8ff330ef326eb078b5415965ec",
+"bluepy",
+"influxdb_client",
+"python-dotenv",
+"pydantic"
+]

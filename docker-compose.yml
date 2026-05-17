@@ -1,0 +1,17 @@
+version: '3'
+services:
+  influxdb:
+    image: influxdb:2
+    container_name: influxdb
+    restart: always
+    ports:
+      - '8086:8086'
+    environment:
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: ahuora
+      DOCKER_INFLUXDB_INIT_PASSWORD: ahuora_test_password
+      DOCKER_INFLUXDB_INIT_ORG: ahuora
+      DOCKER_INFLUXDB_INIT_BUCKET: bucket1
+    volumes:
+      - ./data:/var/lib/influxdb2
+      - ./config:/etc/influxdb2
