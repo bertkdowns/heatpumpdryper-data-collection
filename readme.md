@@ -51,13 +51,48 @@ Install and start influxdb.
 
 Use the `.env-template` file to create a `.env` file with all the required properties.
 
-`
+```
 pip install -r requirements.txt
-`
+```
 
-`
-uv run main.py
-`
+```
+uv sync
+sudo .venv/bin/python main.py
+```
+
+
+You might need to disable wifi powersaving for setup_hotspot.sh to work:
+
+```
+sudo nano /etc/NetworkManager/conf.d/wifi-powersave.conf
+```
+and add
+
+```
+[connection]
+wifi.powersave = 2
+```
+
+and verify
+
+```
+sudo systemctl restart NetworkManager
+iw dev wlan0 get power_save # should be powersave: off
+```
+
+if you get problems with internet not avaliable, ask chatgpt to help. 
+
+Might need to run something like:
+
+```
+sudo nft add rule ip filter FORWARD iifname "wlan0" oifname "eth0" accept
+sudo nft add rule ip filter FORWARD iifname "eth0" oifname "wlan0" ct state related,established accept
+```
+
+Once the tapo plug is connected, find the ip address with `arp -a` or in the tapo app. it should be 192.168.4.something. put that in the .env
+
+You also need to go to the app and choose Me -> Third Party Services -> Third Party Compatibility to get it to authenticate successfully.
+
 
 ## Folder Structure
 

@@ -6,3 +6,4 @@ ela/bluetooth/connect/__pycache__
 __pycache__
 .data
 .config
+data/*
